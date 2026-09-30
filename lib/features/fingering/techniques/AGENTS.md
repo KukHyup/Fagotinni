@@ -38,6 +38,20 @@ asharp_to_bflat/
   shake_v4.dart         — Shake combo, variation 4 (2 steps)
 ```
 
+### Example: `b0/`
+
+A single note rather than a transition — one `trill` variation and three
+`shake` variations.
+
+```
+b0/
+  basicTechnique.dart   — basic B0 fingering
+  trill_v1.dart         — Trill combo, variation 1 (2 steps)
+  shake_v1.dart         — Shake combo, variation 1 (2 steps)
+  shake_v2.dart         — Shake combo, variation 2 (2 steps)
+  shake_v3.dart         — Shake combo, variation 3 (2 steps)
+```
+
 ## Combo Starting Point
 
 **Every combo starts from either the basic technique or the advanced technique.**
