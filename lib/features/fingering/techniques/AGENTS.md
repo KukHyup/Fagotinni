@@ -23,6 +23,7 @@ is a throwaway scratch object. Only `build()` produces the immutable result.
 techniques/
   <technique_name>/
     basicTechnique.dart     — the basic fingering (BassonFingeringVariation)
+    advancedTechnique.dart  — optional advanced fingering
     <combo_name>_v<N>.dart  — a combo variation with N steps
 ```
 
@@ -33,7 +34,27 @@ asharp_to_bflat/
   basicTechnique.dart   — basic A♭→B♭ fingering
   shake_v1.dart         — Shake combo, variation 1 (2 steps)
   shake_v2.dart         — Shake combo, variation 2 (2 steps)
+  shake_v3.dart         — Shake combo, variation 3 (2 steps)
+  shake_v4.dart         — Shake combo, variation 4 (2 steps)
 ```
+
+## Combo Starting Point
+
+**Every combo starts from either the basic technique or the advanced technique.**
+Step 1 of every variation is always one of these two — never a standalone
+fingering. Step 2+ are derived by applying `withKey` / `withoutKey` /
+`withHoleState` to that starting point.
+
+```dart
+// Step 1 = basic technique, step 2 = basic + one key
+static final List<BassonFingeringVariation> steps = [
+  basicTechnique,
+  basicTechnique.withKey(BassoonKey.lowDflat),
+];
+```
+
+If a technique has an `advancedTechnique.dart`, combos may start from that
+instead — the choice depends on the player's level.
 
 ## File Naming
 
@@ -62,39 +83,23 @@ const basicTechnique = BassonFingeringVariationBuilder()
 Contains a class with:
 - `static const comboType` — the `Combo` enum value (e.g., `Combo.shake`)
 - `static final List<BassonFingeringVariation> steps` — the steps of this combo
-- `static BassonFingeringVariation get step<N>` — accessor for each step
+
+Step 1 is always `basicTechnique` (or `advancedTechnique`). Later steps are
+derived by applying `withKey` / `withoutKey` / `withHoleState`.
 
 ```dart
 import '../domain/basson_fingering_variation.dart';
 import '../domain/combo.dart';
 import '../domain/fingering_key.dart';
+import 'basicTechnique.dart';
 
 class ShakeV1 {
   static const comboType = Combo.shake;
 
   static final List<BassonFingeringVariation> steps = [
-    _buildStep1(),
-    _buildStep2(),
+    basicTechnique,
+    basicTechnique.withKey(BassoonKey.lowDflat),
   ];
-
-  static BassonFingeringVariation get step1 => steps[0];
-  static BassonFingeringVariation get step2 => steps[1];
-
-  static BassonFingeringVariation _buildStep1() {
-    return BassonFingeringVariationBuilder()
-        .lowBflat()
-        .lowB()
-        // ... more keys and holes ...
-        .build();
-  }
-
-  static BassonFingeringVariation _buildStep2() {
-    return BassonFingeringVariationBuilder()
-        .lowBflat()
-        .lowB()
-        // ... more keys and holes ...
-        .build();
-  }
 }
 ```
 
@@ -137,5 +142,5 @@ class ShakeV1 {
   `BassonFingeringVariationBuilder`.
 - **BassoonKey** — a physical key on the bassoon. The `bitIndex` is the key's
   number on the reference bassoon key diagram (1-25).
-- **BassoonHole** — an open tone hole (A, B, D, E). Each hole has a
+- **BassoonHole** — an open tone hole (A, B, C, D, E, F). Each hole has a
   `HoleState` (closed, 1/4 open, 1/2 open, 2/3 open, open).
