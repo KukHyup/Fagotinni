@@ -1,8 +1,10 @@
 # Bassoon Techniques
 
-This directory contains all bassoon fingering techniques. Each technique is a
-transition between two notes (e.g., A♭→B♭) with a basic fingering and one or
-more combo variations.
+This directory contains all bassoon fingering techniques. A technique is either
+a **transition** between two notes (e.g. A♭→B♭) or a **single note** (e.g. B0),
+and carries a basic fingering plus one or more combo variations.
+
+The index of every technique is in [techniques.md](techniques.md).
 
 ## Critical NFR
 
@@ -29,6 +31,8 @@ techniques/
 
 ### Example: `asharp_to_bflat/`
 
+A transition between two notes.
+
 ```
 asharp_to_bflat/
   basicTechnique.dart   — basic A♭→B♭ fingering
@@ -38,26 +42,22 @@ asharp_to_bflat/
   shake_v4.dart         — Shake combo, variation 4 (2 steps)
 ```
 
-### Example: `b0/` and `c1/`
+### Example: `b0/`
 
-A single note rather than a transition. Both share the same four variations
-and differ only in the base fingering.
+A single note. The shape is the same as a transition's — only the base
+fingering differs, the variations are built from it identically.
 
 ```
 b0/
-  basicTechnique.dart   — basic B0 fingering (B, C, D, E, F)
-  trill_v1.dart         — Trill combo, variation 1 (2 steps)
-  shake_v1.dart         — Shake combo, variation 1 (2 steps)
-  shake_v2.dart         — Shake combo, variation 2 (2 steps)
-  shake_v3.dart         — Shake combo, variation 3 (2 steps)
-
-c1/
-  basicTechnique.dart   — basic C1 fingering (C, D, E, F)
+  basicTechnique.dart   — basic B0 fingering
   trill_v1.dart         — Trill combo, variation 1 (2 steps)
   shake_v1.dart         — Shake combo, variation 1 (2 steps)
   shake_v2.dart         — Shake combo, variation 2 (2 steps)
   shake_v3.dart         — Shake combo, variation 3 (2 steps)
 ```
+
+These two examples cover every shape. When adding a technique, add a row to
+[techniques.md](techniques.md) instead of a new example section here.
 
 ## Combo Starting Point
 
@@ -133,6 +133,7 @@ class ShakeV1 {
 2. Add `basicTechnique.dart` with the basic fingering
 3. For each combo variation, add `<combo_name>_v<N>.dart`
 4. The class name is `<ComboName><V><N>` (e.g., `ShakeV1`, `TrillV2`)
+5. Add a row to [techniques.md](techniques.md)
 
 ## Adding a New Combo
 
@@ -153,8 +154,9 @@ class ShakeV1 {
 
 ## Key Concepts
 
-- **Technique** — a transition between two notes (e.g., A♭→B♭). Lives in
-  `techniques/<technique_name>/`.
+- **Technique** — a transition between two notes (e.g. A♭→B♭) or a single
+  note (e.g. B0). Lives in `techniques/<technique_name>/`, listed in
+  [techniques.md](techniques.md).
 - **Combo** — a playing technique (e.g., Shake, Trill). Defined in the `Combo`
   enum. Each combo has one or more variations.
 - **Variation** — a version of a combo (e.g., Shake v1, Shake v2). Each
