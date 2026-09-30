@@ -1,6 +1,6 @@
-import '../domain/basson_fingering_variation.dart';
-import '../domain/combo.dart';
-import '../domain/fingering_key.dart';
+import '../../domain/basson_fingering_variation.dart';
+import '../../domain/combo.dart';
+import '../../domain/fingering_key.dart';
 import 'basicTechnique.dart';
 
 /// Shake variation 1 of the A♭→B♭ combo.

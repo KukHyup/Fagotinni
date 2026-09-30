@@ -64,19 +64,22 @@ instead — the choice depends on the player's level.
 
 ## `basicTechnique.dart`
 
-Contains a top-level `const` of type `BassonFingeringVariation`, built from
+Contains a top-level `final` of type `BassonFingeringVariation`, built from
 the builder:
 
 ```dart
-import '../domain/basson_fingering_variation.dart';
-import '../domain/fingering_key.dart';
+import '../../domain/basson_fingering_variation.dart';
+import '../../domain/fingering_key.dart';
 
-const basicTechnique = BassonFingeringVariationBuilder()
+final basicTechnique = BassonFingeringVariationBuilder()
     .lowBflat()
     .lowB()
     // ... more keys and holes ...
     .build();
 ```
+
+`final`, not `const` — the `BassonFingeringVariationBuilder` constructor and
+`build()` are not const, so a const fingering is not expressible.
 
 ## `<combo_name>_v<N>.dart`
 
@@ -88,9 +91,9 @@ Step 1 is always `basicTechnique` (or `advancedTechnique`). Later steps are
 derived by applying `withKey` / `withoutKey` / `withHoleState`.
 
 ```dart
-import '../domain/basson_fingering_variation.dart';
-import '../domain/combo.dart';
-import '../domain/fingering_key.dart';
+import '../../domain/basson_fingering_variation.dart';
+import '../../domain/combo.dart';
+import '../../domain/fingering_key.dart';
 import 'basicTechnique.dart';
 
 class ShakeV1 {

@@ -1,10 +1,10 @@
-import '../domain/basson_fingering_variation.dart';
-import '../domain/fingering_key.dart';
+import '../../domain/basson_fingering_variation.dart';
+import '../../domain/fingering_key.dart';
 
 /// Basic A♭→B♭ fingering.
 ///
 /// Six keys pressed (B♭, B, C, D, E, F) and all six holes fully closed.
-const basicTechnique = BassonFingeringVariationBuilder()
+final basicTechnique = BassonFingeringVariationBuilder()
     .lowBflat() // B♭
     .lowB() // B
     .lowC() // C
